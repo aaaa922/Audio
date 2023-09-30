@@ -29,11 +29,17 @@ const SilentTyping: Plugin = {
     // Get the selected audio file.
     const audioFile = event.detail[0];
 
-    // Upload the audio file to Discord.
-    const voiceMessage = await this.uploadAudioFile(audioFile);
+    // Check if the file is mp3.
+    if (audioFile.endsWith('.mp3')) {
+      // Upload the audio file to Discord.
+      const voiceMessage = await this.uploadAudioFile(audioFile);
 
-    // Send the voice message.
-    voiceClient.play(voiceMessage);
+      // Send the voice message.
+      voiceClient.play(voiceMessage);
+    } else {
+      // The file is not mp3, so send it as a normal file.
+      // TODO: Implement this.
+    }
   });
  },
 
